@@ -1,0 +1,17 @@
+{% extends 'store/master.html' %}
+{% block title %}Your Basket{% endblock %}
+
+{% block content %}
+<h2>Your Basket</h2>
+<ul>
+    {% for basket in baskets %}
+    <li>
+        Product: {{ basket.product.name }},
+        Quantity: {{ basket.quantity }},
+        Status: {{ basket.get_status_display }}
+    </li>
+    {% empty %}
+    <li>Your basket is empty.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

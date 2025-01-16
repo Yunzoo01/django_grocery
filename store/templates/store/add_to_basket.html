@@ -1,0 +1,15 @@
+{% extends 'store/master.html' %}
+
+{% block title %}Add to Basket{% endblock %}
+
+{% block content %}
+<h1>Add {{ product.name }} to Basket</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" class="form-control" min="1" value="1">
+    </div>
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
+{% endblock %}

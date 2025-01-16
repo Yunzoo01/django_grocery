@@ -1,0 +1,18 @@
+{% extends 'store/master.html' %}
+{% block title %}Purchase History{% endblock %}
+
+{% block content %}
+<h2>Purchase History</h2>
+<ul>
+    {% for purchase in purchases %}
+    <li>
+        Product: {{ purchase.product.name }},
+        Quantity: {{ purchase.quantity }},
+        Price: ${{ purchase.product.price }},
+        Total: ${{ purchase.product.price|floatformat:2|add:purchases.quantity }}
+    </li>
+    {% empty %}
+    <li>You have no purchase history.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

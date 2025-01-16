@@ -1,0 +1,27 @@
+{% extends 'store/master.html' %}
+
+{% block title %}Product List - Grocery Store{% endblock %}
+
+{% block content %}
+<h1>Product List</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>${{ product.price }}</td>
+            <td>
+                <a href="{% url 'add_to_basket' product.id %}" class="btn btn-primary btn-sm">Add to Basket</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

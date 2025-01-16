@@ -1,0 +1,36 @@
+{% extends 'store/master.html' %}
+
+{% block title %}Manage Baskets{% endblock %}
+
+{% block content %}
+<h1>Manage Baskets</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for basket in baskets %}
+        <tr>
+            <td>{{ basket.customer.username }}</td>
+            <td>{{ basket.product.name }}</td>
+            <td>{{ basket.quantity }}</td>
+            <td>{{ basket.get_status_display }}</td>
+            <td>
+                <!-- Action Buttons with POST -->
+                <form method="post" action="{% url 'approve_basket' basket.id %}">
+                    {% csrf_token %}
+                    <button type="submit" name="action" value="approve" class="btn btn-success btn-sm">Approve</button>
+                    <button type="submit" name="action" value="deny" class="btn btn-danger btn-sm">Deny</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
